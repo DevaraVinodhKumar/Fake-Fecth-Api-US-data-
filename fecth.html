@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fecth</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(9,1fr);
+            border: 1px solid black;
+        }
+       
+    </style>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+</body>
+</html>
+<script>
+    async function Weather(){
+       
+        try{
+            let weather = await fetch("https://freetestapi.com/api/v1/weathers");
+            let data = await weather.json();
+            
+            let weatherReport = document.querySelector("#container");
+
+            data.map(function(element){
+                let id = document.createElement("p");
+                id.innerText = element.id;
+
+                let City = document.createElement("p");
+                City.innerText = element.city;
+
+                let Country = document.createElement("p");
+                Country.innerText = element.country;
+
+                let Latitude = document.createElement("p");
+                Latitude.innerText = element.latitude;
+
+                let Longitude = document.createElement("p");
+                Longitude.innerText = element.longitude;
+
+                let Temperature = document.createElement("p");
+                Temperature.innerText = element.temperature;
+
+                let Weather_description = document.createElement("p");
+                Weather_description.innerText = element.weather_description;
+
+                let Humidity = document.createElement("p");
+                Humidity.innerText = element.humidity;
+
+                let Wind_speed = document.createElement("p");
+                Wind_speed.innerText = element.wind_speed;
+
+                weatherReport.append(id,City,Country,Latitude,Longitude,Temperature,Weather_description,Humidity,Wind_speed);
+           })
+            
+        }
+        catch(error){
+            console.log(error);
+        }
+    }
+
+    Weather();
+       
+</script>
