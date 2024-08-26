@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Us States API</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(8,1fr);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+</body>
+</html>
+<script>
+    async function usstate(){
+        try{
+            let states =  await fetch("https://freetestapi.com/api/v1/us-states");
+            let data = await states.json();  
+
+            let usData= document.querySelector("#container");
+            data.map(function(element){
+                
+                let Id = document.createElement("p");
+                Id.innerText = element.id;
+
+                let Name = document.createElement("p");
+                Name.innerText = element.name;
+
+                let abbr = document.createElement("p");
+                abbr.innerText = element.abbreviation;
+
+                let capital = document.createElement("p");
+                capital.innerText = element.capital;
+
+                let city = document.createElement("p");
+                city.innerText = element.largest_city;
+
+                let population = document.createElement("p");
+                population.innerText = element.population;
+
+                let area = document.createElement("p");
+                area.innerText = element.area_sq_miles;
+
+                let time = document.createElement("p");
+                time.innerText = element.time_zone;  
+
+                usData.append(Id,Name,abbr,capital,city,population,area,time);
+            }); 
+        }
+        catch(error){
+            console.log(error);
+        }
+    };
+    usstate();
+</script>
